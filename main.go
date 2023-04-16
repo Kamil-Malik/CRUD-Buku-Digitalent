@@ -7,5 +7,5 @@ import (
 
 func main() {
 	db.StartDB()
-	router.StartServer().Run(":8080")
+	router.StartServer()
 }
