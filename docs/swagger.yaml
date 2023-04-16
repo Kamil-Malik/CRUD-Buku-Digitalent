@@ -1,0 +1,150 @@
+basePath: /
+definitions:
+  dto.BookDTO:
+    properties:
+      author:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+  dto.GenericResponseDTO:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact:
+    email: km8003296@gmail.com
+    name: LeleStacia
+    url: https://wa.me/628987654321
+  description: Challenge digitalent FGA
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Book CRUD API
+  version: "1.0"
+paths:
+  /books:
+    get:
+      consumes:
+      - application/json
+      description: get all books from postgres database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.BookDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+      summary: Get all books
+      tags:
+      - books
+    post:
+      consumes:
+      - application/json
+      description: insert a new Book into postgres database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+      summary: Insert a Book
+      tags:
+      - books
+    put:
+      consumes:
+      - application/json
+      description: update a book from postgres database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+      summary: Update a book data
+      tags:
+      - books
+  /books/{id}:
+    delete:
+      description: delete a book by its ID from postgres database
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+      summary: Delete Book by ID
+      tags:
+      - books
+    get:
+      description: get a book by its ID from postgres database
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.BookDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.GenericResponseDTO'
+      summary: Get Book by ID
+      tags:
+      - books
+swagger: "2.0"
